@@ -1,36 +1,60 @@
 
+let country = document.getElementById("inputcity");
+let search = document.querySelector("form");
+let nom_pays = "abidjan";
 
-// fetch(`https://api.openweathermap.org/data/2.5/weather?q=Rouen&appid=aec709ea735b597128350dd8507fd42c`)
-// .then(response => response.json())
-// .then(data => console.log(data));
+
+// recherche //
+search.addEventListener('submit', e=>{
+  e.preventDefault()
+  console.log(country.value);
+nom_pays = country.value;
+  
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nom_pays}&appid=aec709ea735b597128350dd8507fd42c&units=metric`)
+.then(response => response.json())
+.then(data => {
+  console.log(data);
+  console.log(data.main);
+  azerty(data)
+});
 
 
-// 
-const req = async() =>{
-    meteo = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Rouen&appid=aec709ea735b597128350dd8507fd42c&units=metric`)
-    .then(response => response.json())
-    
-    
-    // azerty(meteo.coord);
-      .then (data => console.log(data));
-}
-req();
+let grand  = document.querySelector(".box");
 
-let grand  = document.getElementsByClassName("box")
-async function azerty(mm){
-    let nn = mm.coord
-    console.log(nn);
-    grand.innerHtml="";
-    for (let i = 0; i <nn.length; i++) {
-        grand.innerHtml =`
-        <div class="col-12 col-sm-6 d-flex justify-content-center my-3">
-        <div class="box-container">
-          <div id="pays" class="box">${nn.name}</div>
-          <div id="temperature" class="box">${nn.main.temp}</div>
-          <div id="humidite" class="box">${nn.main.humidity}</div>
-          <div id="froid" class="box">${nn.wind.speed}</div>
-        </div>
-      </div>`
+async function azerty(data){
+    console.log(data);
+
+    document.getElementById("pays").innerHTML=`${data.name}`;
+    document.getElementById("temperature").innerHTML=`${data.main.temp} deg`;
+    document.getElementById("humidite").innerHTML=`${data.main.humidity} hum`;
+    document.getElementById("froid").innerHTML=`${data.wind.speed} wind`;
         
-    };
+}
+
+  
+})
+
+// recuperation //
+
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nom_pays}&appid=aec709ea735b597128350dd8507fd42c&units=metric`)
+.then(response => response.json())
+.then(data => {
+  console.log(data);
+  console.log(data.main);
+  azerty(data)
+});
+
+
+let grand  = document.querySelector(".box");
+
+async function azerty(data){
+    console.log(data);
+
+    document.getElementById("pays").innerHTML=`${data.name}`;
+    document.getElementById("temperature").innerHTML=`${data.main.temp} deg`;
+    document.getElementById("humidite").innerHTML=`${data.main.humidity} hum`;
+    document.getElementById("froid").innerHTML=`${data.wind.speed} wind`;
+        
 }

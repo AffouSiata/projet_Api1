@@ -1,8 +1,7 @@
   
+let apikey ="80b4be52889aeaace0281600b826afd7";
   
-    let apikey ="7843f8d22a43911f15301ef8d76338ae";
-  
-  const req = async() => {
+const req = async() => {
       images = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=7843f8d22a43911f15301ef8d76338ae&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false`)
       .then(reponse => reponse.json())
       dispalyMovie(images.results)
@@ -138,20 +137,53 @@ function previous(){
 
 
 
-    
+// scrool //
+function scroller (){
+     
+     let index = 1;
+
+     window.addEventListener('scroll', (e) => {
+          console.log(scrollY);
+         
+          const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+            console.log(scrollTop, scrollHeight, clientHeight);
+            let defile = scrollHeight - clientHeight;
+            console.log("defile",defile);
+     
+           if(defile == scrollY){
+                index++;
+               console.log(index);
+               fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=${index}`)
+               .then(reponse => reponse.json())
+               .then(data => {
+                    
+                   
+
+                    for(let i = 0; i < data.results.length ;i++) {
+                         img.innerHTML += `<div class="card-group col-md-3">
+                                             <div class="card" style="width: 18rem;margin:20px;" onclick="page2(${data.results[i].id})">
+                                                  <img class="card-img-top" src="https:image.tmdb.org/t/p/w500${data.results[i].backdrop_path}" alt="Card image cap" >
+                                                  <div class="card-body">
+                                                  <h5 class="card-title"> <a href="#" class="btn btn-primary" onclick="page2()">${data.results[i].title}</a></h5>
+                                                  </div>
+                                             </div>
+                                          </div>
+                                          `   ;               
+                    };           
+               })
+           }
+     })
+}
+
+let timeout;
+
+function attente (){
+     timeout = window.setTimeout(scroller, 1000);
+}
+attente();
+        
+ 
+
 
     
-// let affiche = document.querySelectorAll(".btn btn-primary")
-    // affiche.foreach( img =>{
-    //    img .addEventListener('click', e =>{
-    //         console.log(e.target.value);
-            
-    //     })
-    // })
 
-    
-
-
-
-
-    

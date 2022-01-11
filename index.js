@@ -2,6 +2,7 @@
  const req = async() => {
       images = await fetch(` https://api.themoviedb.org/3/discover/movie?api_key=7843f8d22a43911f15301ef8d76338ae&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false`)
       .then(reponse => reponse.json())
+     //  .then(data => console.log(data))
       dispalyMovie(images.results)
       
   }
@@ -25,7 +26,7 @@ recherche.addEventListener('click', (e) =>{
          
           
 
-     })
+//      })
 let img = document.getElementById("img");
     async function dispalyMovie(res){
      img.innerHTML = ''
@@ -92,7 +93,7 @@ let img = document.getElementById("img");
 
 
 // const req = async() =>{
-//      mm = await fetch(`https://the-cocktail-db.p.rapidapi.com/filter.php?i=Gin"?api_key=5a94bae171msh5595950bb9402b3p12b3f3jsn279a7560945d`)
+//      mm = await fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`)
 //      .then(response => response.json())
 //           // dispalymeals(mm.adult.production_companies);
 //        .then(data => console.log(data));
@@ -121,7 +122,7 @@ let img = document.getElementById("img");
 
 
 
-/* <p class="card-text">${res[i].strCategoryDescription}.</p> */
+
 
 
 
@@ -132,17 +133,3 @@ let img = document.getElementById("img");
 
 
  
-
-
-               
-
-
-
-
-
-
-
-
-
-
-
