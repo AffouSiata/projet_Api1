@@ -10,13 +10,14 @@ const req = async() => {
 req();
 
 
-  let formulaire = document.querySelector("form")
+  let formulaire = document.querySelector("form");
   let recherche = document.getElementById("boutton");
+  let searchinput = document.getElementById("inputsearch");
 
 
 formulaire.addEventListener('submit', (e) =>{
-    let searchinput = document.getElementById("inputsearch").value;
-     e.preventDefault()
+    searchinput.value;
+     e.preventDefault();
     //  console.log(searchinput.value);
      fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apikey}&query=${searchinput}`)
           .then(reponse => reponse.json())
